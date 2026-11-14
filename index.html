@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Podcast Editing &amp; Clips — Tapos Patikar</title>
+<meta name="description" content="Podcast editing, branded intros and social clips — a full content system so you save time and never miss an upload. By Tapos Patikar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#0a0a0a;--dark:#111111;--card:#161616;
+  --border:#222;--white:#fff;--off:#e8e8e8;
+  --grey:#888;--gold:#c9a84c;--gold-lt:#e2c06a;
+  --gold-dim:rgba(201,168,76,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 5%;background:rgba(10,10,10,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--white);text-decoration:none;}
+.nav-logo span{color:var(--gold);}
+.nav-right{display:flex;align-items:center;gap:1.8rem;}
+.nav-right a.nav-link{text-decoration:none;color:var(--grey);font-size:.78rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;transition:color .2s;}
+.nav-right a.nav-link:hover{color:var(--white);}
+.nav-book{background:var(--gold);color:var(--black);padding:.5rem 1.3rem;border-radius:2rem;font-weight:700;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:background .2s;}
+.nav-book:hover{background:var(--gold-lt);}
+
+/* BUTTONS */
+.btn-gold{background:var(--gold);color:var(--black);padding:.9rem 2rem;border-radius:3rem;text-decoration:none;font-weight:700;font-size:.9rem;display:inline-flex;align-items:center;gap:.5rem;transition:background .2s,transform .2s;}
+.btn-gold:hover{background:var(--gold-lt);transform:translateY(-2px);}
+.btn-outline{border:1.5px solid var(--border);color:var(--off);padding:.9rem 2rem;border-radius:3rem;text-decoration:none;font-weight:500;font-size:.9rem;display:inline-flex;align-items:center;gap:.5rem;transition:border-color .2s,transform .2s,color .2s;}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px);}
+
+/* HERO (compact — work comes right after) */
+.hero{padding:9rem 5% 3.5rem;text-align:center;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 20%,rgba(201,168,76,.08) 0%,transparent 70%);}
+.hero>*{position:relative;}
+.eyebrow{font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.3);padding:.4rem 1.1rem;border-radius:2rem;margin-bottom:1.6rem;opacity:0;animation:fadeUp .8s .1s forwards;}
+.hero-eyebrow::before{content:'';width:6px;height:6px;background:var(--gold);border-radius:50%;}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,4.8vw,3.6rem);line-height:1.12;font-weight:900;max-width:900px;margin:0 auto;opacity:0;animation:fadeUp .9s .25s forwards;}
+.hero h1 em{font-style:italic;color:var(--gold);}
+.hero-sub{margin:1.4rem auto 0;font-size:1.02rem;color:var(--grey);max-width:680px;line-height:1.8;opacity:0;animation:fadeUp .9s .4s forwards;}
+.hero-actions{margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;opacity:0;animation:fadeUp .9s .55s forwards;}
+
+/* SECTIONS */
+.section{padding:5rem 5%;}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.15;color:var(--white);max-width:640px;}
+.sec-sub{color:var(--grey);font-size:.95rem;line-height:1.75;max-width:560px;margin-top:.8rem;}
+.sec-head{margin-bottom:3rem;}
+.center{text-align:center;}
+.center .sec-title,.center .sec-sub{margin-left:auto;margin-right:auto;}
+
+/* WORK */
+.work{background:var(--dark);padding-top:4.5rem;}
+.show{max-width:1040px;margin:0 auto 4.5rem;}
+.show:last-of-type{margin-bottom:0;}
+.show-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.2rem;padding-bottom:1rem;border-bottom:1px solid var(--border);}
+.show-name{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--white);}
+.show-name span{color:var(--gold);}
+.show-meta{font-size:.78rem;color:var(--grey);letter-spacing:.06em;text-transform:uppercase;}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:1rem;overflow:hidden;transition:border-color .25s,transform .25s;}
+.card:hover{border-color:rgba(201,168,76,.4);transform:translateY(-4px);}
+.video-wide{width:100%;aspect-ratio:16/9;border:none;display:block;background:#000;}
+.video-tall{width:100%;aspect-ratio:9/16;border:none;display:block;background:#000;}
+.card-info{padding:1rem 1.3rem 1.2rem;}
+.card-title{font-size:.95rem;font-weight:600;color:var(--white);display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;}
+.card-desc{font-size:.82rem;color:var(--grey);margin-top:.3rem;line-height:1.55;}
+.badge{display:inline-block;background:var(--gold);color:var(--black);font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.25rem .7rem;border-radius:1rem;}
+.intro-card{margin-bottom:1.5rem;}
+.intro-card .card-title{font-size:1.05rem;}
+
+.reel-row{display:grid;gap:1.5rem;}
+.reel-row.three{grid-template-columns:repeat(3,1fr);}
+.reel-row.two{grid-template-columns:repeat(2,1fr);max-width:700px;}
+.row-label{font-size:.72rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin:0 0 1rem;display:flex;align-items:center;gap:.8rem;}
+.row-label::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* SYSTEM / OFFER */
+.system{background:var(--black);}
+.sys-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;max-width:1040px;margin:0 auto;}
+@media(max-width:1000px){.sys-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.sys-grid{grid-template-columns:1fr;}}
+.sys-card{background:var(--card);border:1px solid var(--border);border-radius:.9rem;padding:1.8rem;transition:border-color .25s,transform .25s;}
+.sys-card:hover{border-color:rgba(201,168,76,.35);transform:translateY(-4px);}
+.sys-icon{width:46px;height:46px;border-radius:.65rem;background:var(--gold-dim);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;}
+.sys-title{font-size:1rem;font-weight:600;color:var(--white);margin-bottom:.45rem;}
+.sys-desc{font-size:.85rem;color:var(--grey);line-height:1.65;}
+.included{max-width:1040px;margin:2.5rem auto 0;background:var(--gold-dim);border:1px solid rgba(201,168,76,.25);border-radius:1rem;padding:1.6rem 1.8rem;}
+.included-title{font-size:.72rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+.included ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.7rem 1.5rem;}
+.included li{font-size:.88rem;color:var(--off);display:flex;gap:.6rem;align-items:flex-start;line-height:1.5;}
+.included li::before{content:'✓';color:var(--gold);font-weight:700;}
+
+/* PROCESS */
+.process{background:var(--dark);}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;max-width:1040px;margin:0 auto;}
+.step{background:var(--card);border:1px solid var(--border);border-radius:.9rem;padding:1.8rem;}
+.step-num{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;color:rgba(201,168,76,.3);line-height:1;margin-bottom:.8rem;}
+.step-title{font-size:1rem;font-weight:600;color:var(--white);margin-bottom:.45rem;}
+.step-desc{font-size:.85rem;color:var(--grey);line-height:1.65;}
+
+/* BOOK */
+.book{background:var(--black);text-align:center;padding:7rem 5%;position:relative;overflow:hidden;}
+.book::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(201,168,76,.07) 0%,transparent 70%);}
+.book>*{position:relative;}
+.book h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.4rem);line-height:1.15;}
+.book h2 em{color:var(--gold);font-style:italic;}
+.book p{color:var(--grey);max-width:520px;margin:1rem auto 0;line-height:1.75;font-size:.95rem;}
+.book-actions{margin-top:2.4rem;display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;}
+.btn-wa{background:#25d366;color:#fff;padding:.95rem 2.2rem;border-radius:3rem;text-decoration:none;font-weight:700;font-size:.95rem;display:inline-flex;align-items:center;gap:.6rem;transition:opacity .2s,transform .2s;}
+.btn-wa:hover{opacity:.88;transform:translateY(-2px);}
+.btn-mail{border:1.5px solid rgba(201,168,76,.4);color:var(--gold);padding:.95rem 2.2rem;border-radius:3rem;text-decoration:none;font-weight:600;font-size:.95rem;display:inline-flex;align-items:center;gap:.6rem;transition:background .2s,transform .2s;}
+.btn-mail:hover{background:var(--gold-dim);transform:translateY(-2px);}
+.book-note{margin-top:1.6rem;font-size:.78rem;color:#666;}
+
+/* FOOTER */
+footer{background:var(--dark);border-top:1px solid var(--border);padding:2rem 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.foot-logo{font-family:'Playfair Display',serif;font-size:1.1rem;}
+.foot-logo span{color:var(--gold);}
+.foot-links{display:flex;gap:1.5rem;flex-wrap:wrap;}
+.foot-links a{color:var(--grey);text-decoration:none;font-size:.82rem;transition:color .2s;}
+.foot-links a:hover{color:var(--gold);}
+.foot-copy{color:#555;font-size:.75rem;}
+
+/* FLOATING WHATSAPP */
+.wa-float{position:fixed;right:1.4rem;bottom:1.4rem;z-index:300;display:flex;align-items:center;background:#25d366;color:#fff;text-decoration:none;font-weight:700;font-size:.85rem;padding:.9rem;border-radius:3rem;box-shadow:0 6px 24px rgba(37,211,102,.4);transition:transform .2s;animation:waPulse 2.4s infinite;}
+.wa-float:hover{transform:translateY(-3px) scale(1.04);}
+.wa-float-label{max-width:0;overflow:hidden;white-space:nowrap;transition:max-width .3s,margin .3s;}
+.wa-float:hover .wa-float-label{max-width:140px;margin-left:.6rem;margin-right:.4rem;}
+@keyframes waPulse{0%{box-shadow:0 6px 24px rgba(37,211,102,.4),0 0 0 0 rgba(37,211,102,.5);}70%{box-shadow:0 6px 24px rgba(37,211,102,.4),0 0 0 16px rgba(37,211,102,0);}100%{box-shadow:0 6px 24px rgba(37,211,102,.4),0 0 0 0 rgba(37,211,102,0);}}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s,transform .65s;}
+.reveal.visible{opacity:1;transform:none;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
+
+@media(max-width:900px){
+  .nav-right a.nav-link{display:none;}
+  .section{padding:4rem 5%;}
+  .hero{padding:7.5rem 5% 2.5rem;}
+  footer{flex-direction:column;text-align:center;}
+}
+@media(max-width:700px){
+  .reel-row.three,.reel-row.two{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:1rem;padding-bottom:.8rem;max-width:none;-webkit-overflow-scrolling:touch;}
+  .reel-row .card{flex:0 0 72%;scroll-snap-align:start;}
+  .show{margin-bottom:3.5rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Tapos <span>Patikar</span></a>
+  <div class="nav-right">
+    <a href="#work" class="nav-link">Work</a>
+    <a href="#system" class="nav-link">What You Get</a>
+    <a href="#book" class="nav-book">Book a Call</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-eyebrow">Podcast Editing</div>
+  <h1>Your Podcast Editing Partner.<br><em>From Full Episodes to Short-Form Content.</em></h1>
+  <p class="hero-sub">I help podcast hosts turn their recordings into professionally edited episodes, engaging intros and short-form clips — so they can focus on recording while I handle the editing.</p>
+  <div class="hero-actions">
+    <a href="#work" class="btn-gold">See My Work</a>
+    <a href="#book" class="btn-outline">Let's Talk About Your Podcast</a>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="section work" id="work">
+
+  <!-- SHOW: LISA -->
+  <div class="show reveal">
+    <div class="show-head">
+      <div class="show-name"><span>Lisa</span> — Podcast</div>
+      <div class="show-meta">Branded intro · Intro reel · Episode clips</div>
+    </div>
+
+    <div class="card intro-card">
+      <iframe class="video-wide" src="https://www.youtube.com/embed/5ABRbzThhPA?rel=0&modestbranding=1" title="Lisa podcast intro" allowfullscreen></iframe>
+      <div class="card-info">
+        <div class="card-title">Podcast Intro</div>
+        <div class="card-desc">A branded intro that sets the tone of the show from the first second.</div>
+      </div>
+    </div>
+
+    <div class="row-label">Intro reel &amp; clips</div>
+    <div class="reel-row three">
+      <div class="card">
+        <iframe class="video-tall" src="https://www.youtube.com/embed/oeY0E8XMevo?rel=0&modestbranding=1" title="Lisa intro reel" allowfullscreen loading="lazy"></iframe>
+        <div class="card-info">
+          <div class="card-title">Intro Reel <span class="badge">80K+ views on Instagram</span></div>
+          <div class="card-desc">The hook that introduces the episode and pulls new viewers in.</div>
+        </div>
+      </div>
+      <div class="card">
+        <iframe class="video-tall" src="https://www.youtube.com/embed/sDKNV3o1Mac?rel=0&modestbranding=1" title="Lisa clip 1" allowfullscreen loading="lazy"></iframe>
+        <div class="card-info">
+          <div class="card-title">Episode Clip #1</div>
+          <div class="card-desc">Captioned vertical clip, ready for Reels, Shorts and TikTok.</div>
+        </div>
+      </div>
+      <div class="card">
+        <iframe class="video-tall" src="https://www.youtube.com/embed/IO5FfaJzSNo?rel=0&modestbranding=1" title="Lisa clip 2" allowfullscreen loading="lazy"></iframe>
+        <div class="card-info">
+          <div class="card-title">Episode Clip #2</div>
+          <div class="card-desc">Another moment from the same episode, cut to keep people watching.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHOW: KENEDY -->
+  <div class="show reveal">
+    <div class="show-head">
+      <div class="show-name"><span>Kenedy</span> — Podcast</div>
+      <div class="show-meta">Branded intro · Intro reel · Episode clips</div>
+    </div>
+
+    <div class="card intro-card">
+      <iframe class="video-wide" src="https://www.youtube.com/embed/ShBKm-a5A5c?rel=0&modestbranding=1" title="Kenedy podcast intro" allowfullscreen loading="lazy"></iframe>
+      <div class="card-info">
+        <div class="card-title">Podcast Intro</div>
+        <div class="card-desc">A different show, a different style, with the same polished finish.</div>
+      </div>
+    </div>
+
+    <div class="row-label">Intro reel &amp; clip</div>
+    <div class="reel-row two">
+      <div class="card">
+        <iframe class="video-tall" src="https://www.youtube.com/embed/Knove8TkBXY?rel=0&modestbranding=1" title="Kenedy intro reel" allowfullscreen loading="lazy"></iframe>
+        <div class="card-info">
+          <div class="card-title">Intro Reel</div>
+          <div class="card-desc">A short teaser that makes people want the full episode.</div>
+        </div>
+      </div>
+      <div class="card">
+        <iframe class="video-tall" src="https://www.youtube.com/embed/YZXLSMAKJMA?rel=0&modestbranding=1" title="Kenedy clip" allowfullscreen loading="lazy"></iframe>
+        <div class="card-info">
+          <div class="card-title">Episode Clip</div>
+          <div class="card-desc">A standout moment, captioned and cut for social.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- SYSTEM / OFFER -->
+<section class="section system" id="system">
+  <div class="sec-head center">
+    <div class="eyebrow reveal">✦ What You Get</div>
+    <h2 class="sec-title reveal">A Full Content System For Your Podcast</h2>
+    <p class="sec-sub reveal">You don't need an editor for each piece. You need one system that turns every recording into a week of content.</p>
+  </div>
+  <div class="sys-grid">
+    <div class="sys-card reveal">
+      <div class="sys-icon"><svg width="22" height="22" fill="none" stroke="#c9a84c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+      <div class="sys-title">Get Your Time Back</div>
+      <div class="sys-desc">Hand over the recording and you're done. No timelines, no exports, no chasing files. You show up to record, and I handle the rest.</div>
+    </div>
+    <div class="sys-card reveal">
+      <div class="sys-icon"><svg width="22" height="22" fill="none" stroke="#c9a84c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
+      <div class="sys-title">Never Miss An Upload</div>
+      <div class="sys-desc">A steady turnaround means a steady schedule. Your audience hears from you every week, because the editing never becomes the bottleneck.</div>
+    </div>
+    <div class="sys-card reveal">
+      <div class="sys-icon"><svg width="22" height="22" fill="none" stroke="#c9a84c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="12" cy="18" r="3"/><path d="M8.5 7.5l2.5 8M15.5 7.5l-2.5 8"/></svg></div>
+      <div class="sys-title">One Episode, A Week Of Content</div>
+      <div class="sys-desc">Every episode is cut into an intro reel and clips for Instagram, TikTok and Shorts, so one recording keeps you visible all week.</div>
+    </div>
+    <div class="sys-card reveal">
+      <div class="sys-icon"><svg width="22" height="22" fill="none" stroke="#c9a84c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 3l2.7 5.5 6 .9-4.4 4.2 1 6L12 16.8 6.7 19.6l1-6L3.3 9.4l6-.9z"/></svg></div>
+      <div class="sys-title">A Look That's Yours</div>
+      <div class="sys-desc">Branded intros, consistent captions and one clean style across every episode, so your show feels professional and recognizable.</div>
+    </div>
+  </div>
+
+  <div class="included reveal">
+    <div class="included-title">Included in the system</div>
+    <ul>
+      <li>Full episode editing</li>
+      <li>Clean audio and sound cleanup</li>
+      <li>Branded podcast intros and outros</li>
+      <li>Intro reels that hook new viewers</li>
+      <li>Short clips with animated captions</li>
+      <li>2 free revisions on every video</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section process" id="how">
+  <div class="sec-head center">
+    <div class="eyebrow reveal">✦ How It Works</div>
+    <h2 class="sec-title reveal">Record. Send. Publish.</h2>
+  </div>
+  <div class="steps">
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <div class="step-title">You Send The Recording</div>
+      <div class="step-desc">Share the raw episode through Google Drive, WeTransfer or Dropbox, along with any style notes.</div>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">02</div>
+      <div class="step-title">I Build The Whole Package</div>
+      <div class="step-desc">The edited episode, intro and clips, usually delivered within 2–3 days.</div>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">03</div>
+      <div class="step-title">You Publish &amp; Grow</div>
+      <div class="step-desc">Tweak anything with 2 free revisions, then publish. Repeat every week.</div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK -->
+<section class="book" id="book">
+  <div class="eyebrow">✦ Let's Work Together</div>
+  <h2>Ready To Stop Editing<br>And <em>Start Publishing?</em></h2>
+  <p>Tell me about your show and I'll send a custom quote for your episodes and clips.</p>
+  <div class="book-actions">
+    <a href="https://wa.me/918910481488" class="btn-wa" target="_blank" rel="noopener">
+      <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+      Book a Call on WhatsApp
+    </a>
+    <a href="mailto:tapospatikar.business@gmail.com?subject=Podcast%20editing%20inquiry" class="btn-mail">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+      Send an Email
+    </a>
+  </div>
+  <div class="book-note">English-language podcasts only.</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-logo">Tapos <span>Patikar</span></div>
+  <div class="foot-links">
+    <a href="https://www.instagram.com/tapos.patikar/" target="_blank" rel="noopener">Instagram</a>
+    <a href="mailto:tapospatikar.business@gmail.com">Email</a>
+    <a href="https://wa.me/918910481488" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+  <div class="foot-copy">© 2025 Tapos Patikar. All rights reserved.</div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/918910481488" class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg width="30" height="30" fill="#fff" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+  <span class="wa-float-label">Chat with me</span>
+</a>
+
+<script>
+const reveals=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:0.08});
+reveals.forEach(r=>obs.observe(r));
+</script>
+</body>
+</html>
